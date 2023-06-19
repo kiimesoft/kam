@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   await configureCameraSelector($cameraSelector, $videoDisplayer);
 
-  const $photoButton = document.querySelector("#take-photo") as HTMLButtonElement;
+  const $photoButton = document.querySelector("#button-take-photo") as HTMLButtonElement;
   $photoButton.addEventListener("click", () => { takePhoto($videoDisplayer) });
 });
 

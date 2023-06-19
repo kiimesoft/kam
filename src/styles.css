@@ -31,25 +31,23 @@
   gap: 4px;
 }
 
-#capture {
-  padding: 4px;
-  background-color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 #video {
   height: 100%;
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
 }
 
-#select-camera {
+.bottom-button {
+  font-size: medium;
   padding: 4px;
   background-color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  outline: none;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.484);
+
+}
+
+.bottom-button:hover {
+  background-color: rgb(240, 235, 235);
 }
