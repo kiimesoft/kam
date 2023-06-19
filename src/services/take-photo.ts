@@ -8,10 +8,11 @@ export async function takePhoto($videoDisplayer: HTMLVideoElement) {
     $canvas.width = $videoDisplayer.videoWidth;
     $canvas.height = $videoDisplayer.videoHeight;
 
-    $canvas.getContext("2d")?.drawImage($videoDisplayer, 0, 0, $canvas.width, $canvas.height);
+    // rotate image
+    $canvas.getContext("2d")?.translate($canvas.width, 0);
+    $canvas.getContext("2d")?.scale(-1, 1);
 
-    // create araybuffer from canvas
-
+    // capture image
     $canvas.getContext("2d")?.drawImage($videoDisplayer, 0, 0, $canvas.width, $canvas.height);
 
     const pictureDire = await pictureDir();
