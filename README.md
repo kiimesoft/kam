@@ -1,4 +1,4 @@
-# KAM - A web-based Windows Camera App
+# KAM - A web-based Windows Camera Preview App
 
 This app is built with vanilla JavaScript and uses the WebComponents API to create custom elements. It is a simple camera app that allows you to take pictures.
 

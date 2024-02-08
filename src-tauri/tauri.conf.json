@@ -3,28 +3,22 @@
     "beforeDevCommand": "pnpm dev",
     "beforeBuildCommand": "pnpm build",
     "devPath": "http://localhost:1420",
-    "distDir": "../dist",
-    "withGlobalTauri": true
+    "distDir": "../dist"
   },
   "package": {
-    "productName": "Kam - Windows Camera",
+    "productName": "Kam - Windows Camera Preview",
     "version": "../package.json"
   },
   "tauri": {
+    "systemTray": {
+      "iconPath": "./icons/32x32.png"
+    },
     "allowlist": {
       "all": false,
-      "shell": {
-        "all": false,
-        "open": true
-      },
-      "fs": {
-        "all": true,
-        "scope": [
-          "$PICTURE/*"
-        ]
-      },
-      "path": {
-        "all": true
+      "window": {
+        "hide": true,
+        "show": true,
+        "setFocus": true
       }
     },
     "bundle": {
@@ -45,14 +39,16 @@
     },
     "windows": [
       {
-        "resizable": true,
-        "title": "Kam - Windows Camera",
+        "title": "Kam - Windows Camera Preview",
+        "resizable": false,
+        "visible": false,
+        "width": 600,
+        "height": 360,
+        "decorations": false,
         "transparent": true,
-        "minWidth": 710,
-        "minHeight": 400,
-        "width": 710,
-        "height": 400,
-        "alwaysOnTop": true
+        "skipTaskbar": true,
+        "minimizable": false,
+        "closable": false
       }
     ]
   }
