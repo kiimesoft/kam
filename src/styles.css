@@ -45,9 +45,9 @@
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.484);
-
+  outline: none;
 }
 
-.bottom-button:hover {
-  background-color: rgb(240, 235, 235);
+.bottom-button:focus {
+  border: 1px solid orange;
 }
