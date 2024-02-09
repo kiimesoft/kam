@@ -2,7 +2,7 @@ name: 'Generate Release'
 on:
   push:
     branches:
-      - release-main # Unvalid branch, just to avoid releases
+      - main
 
 jobs:
   test-types:
