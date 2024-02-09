@@ -4,6 +4,7 @@ import { displayAvailableCameras, displayVideoFromSelectedInput } from "./servic
 
 export class KamApp {
     private static videoStream: MediaStream | null;
+    private static selectedCameraId: string | undefined = undefined
     private static $cameraSelector = document.querySelector("#select-camera") as HTMLSelectElement;
     private static $videoDisplayer = document.querySelector("#video") as HTMLVideoElement;
 
@@ -15,6 +16,12 @@ export class KamApp {
 
         // Fill the camera selector with available cameras
         await displayAvailableCameras(KamApp.$cameraSelector);
+
+        // Every time we run the app we recalculate the available cameras
+        // and select the default camera or the last selected one 
+        const defaultAvailableCamera = KamApp.$cameraSelector.value;
+        KamApp.$cameraSelector.value = KamApp.selectedCameraId || defaultAvailableCamera;
+        KamApp.selectedCameraId = KamApp.$cameraSelector.value;
 
         // Listen for camera selector changes
         KamApp.$cameraSelector.addEventListener("change", KamApp.onCameraSelectorChange);
@@ -37,6 +44,7 @@ export class KamApp {
     }
 
     private static onCameraSelectorChange() {
+        KamApp.selectedCameraId = KamApp.$cameraSelector.value;
         displayVideoFromSelectedInput(KamApp.$cameraSelector, KamApp.$videoDisplayer);
     }
 
