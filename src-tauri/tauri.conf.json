@@ -37,7 +37,13 @@
         "icons/128x128@2x.png",
         "icons/icon.icns",
         "icons/icon.ico"
-      ]
+      ],
+      "windows": {
+        "nsis": {
+          "license": "../LICENSE",
+          "installerIcon": "icons/icon.ico"
+        }
+      }
     },
     "security": {
       "csp": null
