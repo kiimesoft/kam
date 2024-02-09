@@ -8,26 +8,22 @@ fn main() {
         .plugin(tauri_plugin_positioner::init())
         .system_tray(create_system_tray())
         // This is required to get tray-relative positions to work
-        .on_system_tray_event(|app, event| {
-            tauri_plugin_positioner::on_tray_event(app, &event);
-            match event {
-                tauri::SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
-                    "toggle" => {
-                        let currently_visible =
-                            app.get_window("main").unwrap().is_visible().unwrap();
-                        app.emit_to("main", "toggle", currently_visible).unwrap();
-                    }
-                    "quit" => {
-                        app.exit(0);
-                    }
-                    _ => {}
-                },
-                tauri::SystemTrayEvent::LeftClick { .. } => {
+        .on_system_tray_event(|app, event| match event {
+            tauri::SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
+                "toggle" => {
                     let currently_visible = app.get_window("main").unwrap().is_visible().unwrap();
                     app.emit_to("main", "toggle", currently_visible).unwrap();
                 }
+                "quit" => {
+                    app.exit(0);
+                }
                 _ => {}
+            },
+            tauri::SystemTrayEvent::LeftClick { .. } => {
+                let currently_visible = app.get_window("main").unwrap().is_visible().unwrap();
+                app.emit_to("main", "toggle", currently_visible).unwrap();
             }
+            _ => {}
         })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
