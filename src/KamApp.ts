@@ -1,5 +1,5 @@
 import { moveWindow, Position } from "tauri-plugin-positioner-api";
-import { appWindow } from "@tauri-apps/api/window";
+import { appWindow, LogicalPosition } from "@tauri-apps/api/window";
 import { displayAvailableCameras, displayVideoFromSelectedInput } from "./services/camera-selector";
 
 export class KamApp {
@@ -9,7 +9,7 @@ export class KamApp {
 
     static async runApp() {
         // Ensure the window is in the correct position
-        await moveWindow(Position.TopRight);
+        await KamApp.moveWindowToBottomRight();
         await appWindow.show();
         await appWindow.setFocus();
 
@@ -39,5 +39,12 @@ export class KamApp {
     private static onCameraSelectorChange() {
         displayVideoFromSelectedInput(KamApp.$cameraSelector, KamApp.$videoDisplayer);
     }
+
+    private static async moveWindowToBottomRight() {
+        await moveWindow(Position.BottomRight);
+        const position = await appWindow.innerPosition();
+        await appWindow.setPosition(new LogicalPosition(position.x - 18, position.y - 60));
+    }
+
 
 }

@@ -18,7 +18,8 @@
       "window": {
         "hide": true,
         "show": true,
-        "setFocus": true
+        "setFocus": true,
+        "setPosition": true
       }
     },
     "bundle": {
@@ -51,10 +52,11 @@
     "windows": [
       {
         "title": "Kam - Windows Camera Preview",
+        "alwaysOnTop": true,
         "resizable": false,
         "visible": false,
-        "width": 600,
-        "height": 360,
+        "width": 450,
+        "height": 270,
         "decorations": false,
         "transparent": true,
         "skipTaskbar": true,

@@ -11,15 +11,17 @@ fn main() {
         .on_system_tray_event(|app, event| {
             tauri_plugin_positioner::on_tray_event(app, &event);
             match event {
-                tauri::SystemTrayEvent::MenuItemClick { id, .. } => {
-                    if id == "toggle" {
+                tauri::SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
+                    "toggle" => {
                         let currently_visible =
                             app.get_window("main").unwrap().is_visible().unwrap();
                         app.emit_to("main", "toggle", currently_visible).unwrap();
-                    } else if id == "quit" {
+                    }
+                    "quit" => {
                         app.exit(0);
                     }
-                }
+                    _ => {}
+                },
                 tauri::SystemTrayEvent::LeftClick { .. } => {
                     let currently_visible = app.get_window("main").unwrap().is_visible().unwrap();
                     app.emit_to("main", "toggle", currently_visible).unwrap();

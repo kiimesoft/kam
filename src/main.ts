@@ -1,4 +1,3 @@
-import { TauriEvent } from "@tauri-apps/api/event";
 import { KamApp } from "./KamApp";
 import "./services/settings-page-custom-element"
 import { appWindow } from "@tauri-apps/api/window";
@@ -14,15 +13,8 @@ appWindow.listen<boolean>("toggle", async (e) => {
   }
 })
 
-appWindow.listen(TauriEvent.WINDOW_BLUR, KamApp.stopApp)
-
 // disable native context menu
 document.addEventListener("contextmenu", (e) => e.preventDefault());
-
-// disable right click
-document.addEventListener("mousedown", (e) => {
-  if (e.button === 2) e.preventDefault();
-});
 
 // disable non native shortcuts
 document.addEventListener("keydown", (e) => {
